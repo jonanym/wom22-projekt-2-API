@@ -1,0 +1,15 @@
+@baseURL = http://localhost:3031
+
+// get all services
+GET {{baseURL}}/services
+
+###
+
+// create new service
+POST {{baseURL}}/services
+Content-Type: application/json
+
+{
+    "service": "Laundry",
+    "price": 10
+}
