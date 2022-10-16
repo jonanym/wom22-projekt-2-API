@@ -1,22 +1,41 @@
 const express = require('express')
-const service = require('../models/service')
 const router = express.Router()
-const Service = require('../models/service')
-const { updateOne } = require('../models/service')
 
-/*router.get('/', async(req, res) => {
+const { updateOne } = require('../models/createService')
+const { Sequelize } = require('sequelize');
+const sequelize = new Sequelize('postgresql://fwtbpmva:d498ee036dbd5c5537e4@128.214.253.167:5432/fwtbpmva')
+const Service = require('../models/createService')
+
+router.get('/', async(req, res) => {
     try {
-        Service.getServices
+        const service = require('../models/createService')(sequelize)
+        res.send(service)
     } catch (error) {
         res.status(500).send({ msg: error.message })
     }
-})*/
-
-
+})
 
 router.post('/services', async(req, res) => {
     try {
-        Service(req)
+        let response = "Overwrite this"
+
+        await sequelize.sync().then(() => {
+            Service.create({
+                name: req.name,
+                price: req.price,
+                available: req.available
+            }).then(res => {
+                response = res;
+                console.log(error)
+            }).catch((error) => {
+                response = ('Failed: ', error)
+                console.log(error)
+            });
+        }).catch((error) => {
+            console.log(error)
+        });
+
+        res.send(response)
     } catch (error) {
         res.status(500).send({ msg: error.message })
     }
