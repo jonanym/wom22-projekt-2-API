@@ -12,8 +12,10 @@ var conString = "postgresql://qdwephxk:ed9a29511c3fa2de1d2a@128.214.253.167:5432
 var client = new pg.Client(conString);
 client.connect();
 
-client.on('error', (error) => console.log(error))
-client.on('connection', () => console.log('connected to DB!'))
+client.query('SELECT NOW()', (err, res) => {
+    console.log(err, res)
+    client.end()
+  })
 
 app.use(express.json())
 
