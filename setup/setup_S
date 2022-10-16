@@ -1,4 +1,4 @@
-const { Sequalize, DataTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 //const sequelize = new Sequelize('postgresql://fwtbpmva:d498ee036dbd5c5537e4@128.214.253.167:5432/fwtbpmva')
 const sequelize = new Sequelize('postgresql://fwtbpmva:d498ee036dbd5c5537e4@128.214.253.167:5432/fwtbpmva')
@@ -7,15 +7,18 @@ const sequelize = new Sequelize('postgresql://fwtbpmva:d498ee036dbd5c5537e4@128.
 // ID, createdAt, updatedAt - Skapas automatiskt
 // Src https://sebhastian.com/sequelize-timestamps/
 
-const Service = sequelize.define("Services", {
-    name: DataTypes.TEXT,
-    price: DataTypes.FLOAT,
-    available: DataTypes.BOOLEAN
-});
+module.exports = (sequelize) => {
+    const Service = sequelize.define("Services", {
+        name: {
+            type: Sequelize.STRING,
+        },
+        price: {
+            type: Sequelize.FLOAT,
+        },
+        available: {
+            type: Sequelize.BOOLEAN
+        }
+    });
 
-(async() => {
-    await sequelize.sync({ force: true });
-    // Code here
-})();
-
-module.exports = mongoose.model('SETUP_S', Service)
+    return Service;
+}
