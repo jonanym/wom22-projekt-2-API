@@ -1,12 +1,18 @@
-const mongoose = require('mongoose')
+const Service = require('../setup/SETUP_O')
 
-const orderSchema = new mongoose.Schema({
-    service: {
-        type: String,
-        required: true
-    },
-    cabin_id: {
-        type: String,
-        unique: true
-    }
-})
+const getOrders = (sequelize, { DataTypes }) => {
+    const Order = sequelize.define('orders', {
+        username: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            },
+        },
+    });
+
+    return User;
+};
+
+export default getOrders;

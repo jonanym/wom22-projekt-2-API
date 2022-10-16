@@ -1,5 +1,5 @@
 const express = require('express')
-//const bodyParser = require('body-parser');
+    //const bodyParser = require('body-parser');
 const sequelize = require('sequelize')
 const app = express();
 const pg = require('pg');
@@ -15,7 +15,7 @@ client.connect();
 client.query('SELECT NOW()', (err, res) => {
     console.log(err, res)
     client.end()
-  })
+})
 
 app.use(express.json())
 
