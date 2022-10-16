@@ -4,22 +4,24 @@ const router = express.Router()
 const Service = require('../models/service')
 const { updateOne } = require('../models/service')
 
-router.get('/', async(req, res) => {
+/*router.get('/', async(req, res) => {
     try {
         Service.getServices
     } catch (error) {
         res.status(500).send({ msg: error.message })
     }
-})
+})*/
 
-/*router.post('/', async(req, res) => {
+
+
+router.post('/services', async(req, res) => {
     try {
-        Service.get_service
+        Service(req)
     } catch (error) {
         res.status(500).send({ msg: error.message })
     }
 
-})*/
+})
 
 router.delete('/', async(req, res) => {
     try {
