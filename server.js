@@ -1,14 +1,19 @@
 const express = require('express')
+//const bodyParser = require('body-parser');
+const sequelize = require('sequelize')
 const app = express();
-const mongoose = require('mongoose') //importera mongoose
-const PORT = process.env.PORT || 3031
-
+const pg = require('pg');
 require('dotenv').config()
 
-mongoose.connect(process.env.DB_URL)
-const db = mongoose.connection
-db.on('error', (error) => console.log(error))
-db.on('open', () => console.log('connected to DB!'))
+const PORT = process.env.PORT || 3031
+
+var conString = "postgresql://qdwephxk:ed9a29511c3fa2de1d2a@128.214.253.167:5432/qdwephxk";
+
+var client = new pg.Client(conString);
+client.connect();
+
+client.on('error', (error) => console.log(error))
+client.on('connection', () => console.log('connected to DB!'))
 
 app.use(express.json())
 

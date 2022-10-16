@@ -1,4 +1,4 @@
-@baseURL = https://wom22-api2.azurewebsites.net/
+@baseURL = https://wom22-api2.azurewebsites.net
 
 // get all services
 GET {{baseURL}}/services
