@@ -5,8 +5,9 @@ const sequelize = new Sequelize('postgresql://fwtbpmva:d498ee036dbd5c5537e4@128.
 
 // Detta sätt att define, pushar ett försök att OM denna tabell inte redan existerar, skapa den.
 // ID, createdAt, updatedAt - Skapas automatiskt
+// Src https://sebhastian.com/sequelize-timestamps/
 
-const Order = sequelize.define("order", {
+const Order = sequelize.define("Orders", {
     client_id: DataTypes.TEXT,
     service_id: DataTypes.TEXT,
     cabin_id: DataTypes.TEXT
